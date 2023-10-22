@@ -20,6 +20,6 @@ stages:
       displayName: Build an image
       inputs:
         command: build
-        dockerfile: '$(Build.SourcesDirectory)/Docker - getting started well/Dockerfile_0/Dockerfile'
+        dockerfile: '$(Build.SourcesDirectory)/Docker - getting started well/Dockerfile_0a/Dockerfile'
         tags: |
           $(tag)
