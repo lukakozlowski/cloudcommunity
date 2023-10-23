@@ -10,7 +10,7 @@ variables:
   imageRepository: 'app1'
   containerRegistry: 'acrcloudcommunity.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/Docker - how to get started well/app1/Dockerfile'
-  tag: '$(Build.BuildId)'
+  tag: '2.0.$(Build.BuildId)'
 
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
