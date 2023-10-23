@@ -1,3 +1,3 @@
-FROM cloudcommunity:1.0.0
+FROM cloudcommunity:1.0.3
 
-COPY index.html /var/
+COPY index.html /usr/share/nginx/html/
