@@ -1,6 +1,6 @@
 FROM ubuntu:latest
-MAINTAINER maintainer="Lukasz Kozlowski <lkz@spyro-soft.com"
 LABEL com.example.version="0.0.1-alfa"
+ENV MY_NAME="John Doe"
 WORKDIR /tmp
 RUN apt-get update && apt-get install -y \
     cron \

@@ -1,0 +1,41 @@
+trigger:
+- main
+
+resources:
+- repo: self
+
+variables:
+  # Container registry service connection established during pipeline creation
+  dockerRegistryServiceConnection: 'a90e3e16-eae7-4748-8a6a-641ce3626452'
+  imageRepository: 'app1'
+  containerRegistry: 'acrcloudcommunity.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Docker - how to get started well/app1/Dockerfile'
+  tag: '2.0.$(Build.BuildId)'
+
+  # Agent VM image name
+  vmImageName: 'ubuntu-latest'
+
+stages:
+- stage: Build
+  displayName: Build and push stage
+  jobs:
+  - job: Build
+    displayName: Build
+    pool:
+      vmImage: $(vmImageName)
+    steps:
+    - task: Docker@2
+      displayName: Pull image from container registry
+      inputs:
+        command: pull
+        containerRegistry: $(dockerRegistryServiceConnection)
+        arguments: acrcloudcommunity.azurecr.io/cloudcommunity:1.0.3
+    - task: Docker@2
+      displayName: Build and push an image to container registry
+      inputs:
+        command: buildAndPush
+        repository: $(imageRepository)
+        dockerfile: $(dockerfilePath)
+        containerRegistry: $(dockerRegistryServiceConnection)
+        tags: |
+          $(tag)
